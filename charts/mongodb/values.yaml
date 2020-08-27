@@ -1,10 +1,9 @@
-mongodb:
-  persistent: false
-  enabled: true
-  database:
-    name: profiles
-    adminPassword: pAssw0rd
-    user: lxp
-    password: pAssw0rd
-  image: mongodb:3.6
-  storage: 1Gi
+persistent: false
+enabled: true
+database:
+  name: profiles
+  adminPassword: pAssw0rd
+  user: lxp
+  password: pAssw0rd
+image: mongodb:3.6
+storage: 1Gi
