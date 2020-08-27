@@ -1,0 +1,14 @@
+apiVersion: v2
+name: mongodb
+description: A Helm chart to deploy the mongodb for dev and test environment
+type: application
+# HelmChart Version
+version: 1.0.0
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: 3.6
+home: https://github.com/whoacademy/helm-charts/charts/mongodb
+maintainers:
+  - name: springdo
+  - name: gkmahendran09
+  - name: rh-jpoole
