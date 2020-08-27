@@ -1,5 +1,5 @@
-{{- if .Values.mongodb.enabled }}
-{{- if .Values.mongodb.persistent }}
+{{- if .Values.enabled }}
+{{- if .Values.persistent }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,6 +11,6 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.mongodb.storage | quote }}
+      storage: {{ .Values.storage | quote }}
 {{- end }}
 {{- end }}

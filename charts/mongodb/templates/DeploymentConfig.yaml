@@ -1,4 +1,4 @@
-{{- if .Values.mongodb.enabled }}
+{{- if .Values.enabled }}
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
@@ -74,7 +74,7 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
-    {{- if .Values.mongodb.persistent }}
+    {{- if .Values.persistent }}
       - name: mongodb-data
         persistentVolumeClaim:
           claimName: {{ include "mongodb.fullname" . }}
@@ -89,7 +89,7 @@ spec:
       - mongodb
       from:
         kind: ImageStreamTag
-        name: {{ .Values.mongodb.image | quote }}
+        name: {{ .Values.image | quote }}
         namespace: openshift
       lastTriggeredImage: ""
     type: ImageChange
