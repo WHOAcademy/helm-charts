@@ -1,0 +1,32 @@
+{{- if .Values.enabled }}
+{{- if .Values.persistent }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "postgresql.fullname" . }}
+  labels:
+    app: {{ template "postgresql.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+{{ if .Values.annotations}}
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+{{- end }}
+spec:
+  accessModes:
+    - {{ .Values.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.size | quote }}
+{{- if .Values.storageClass }}
+{{- if (eq "-" .Values.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,96 @@
+{{- if eq .Values.enabled true -}}
+apiVersion: apps.openshift.io/v1 
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: {{ .Chart.Name }}
+    deploymentconfig: {{ template "postgresql.fullname" . }}
+  name: {{ template "postgresql.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    app: {{ .Chart.Name }}
+    deploymentconfig: {{ template "postgresql.fullname" . }}
+  strategy:
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+        deploymentconfig: {{ template "postgresql.fullname" . }}
+    spec:
+      containers:
+        - name: postgresql
+          env:
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "username" }}
+                  name: {{ template "postgresql.fullname" . }}
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "password" }}
+                  name: {{ template "postgresql.fullname" . }}
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: {{ default "database" }}
+                  name: {{ template "postgresql.fullname" . }}
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: {{ .Values.service.port | default "5432" }}
+            timeoutSeconds: 1
+          ports:
+            - containerPort: {{ .Values.service.port  | default "5432" }}
+              protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -i
+                - -c
+                - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c 'SELECT 1'
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          securityContext:
+            capabilities: {}
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+          volumeMounts:
+            - mountPath: /var/lib/pgsql/data
+              name: {{ template "postgresql.name" . }}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+      {{- if .Values.persistent }}
+        - name: {{ template "postgresql.name" . }}
+          persistentVolumeClaim:
+            claimName: {{ template "postgresql.fullname" . }}
+      {{- else }}
+        - name: {{ template "postgresql.name" . }}
+          emptyDir: {}
+      {{- end }}
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - postgresql
+        from:
+          kind: ImageStreamTag
+          name: postgresql:{{ .Values.image.tag | default "9.6" }}
+          namespace: openshift
+      type: ImageChange
+{{- end }}
