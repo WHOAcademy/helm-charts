@@ -31,4 +31,20 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/mongodb-1.0.0/mongodb-1.0.0.tgz
     version: 1.0.0
+  postgresql:
+  - apiVersion: v2
+    appVersion: "9.6"
+    created: "2020-08-28T10:19:50.237089953Z"
+    description: A Helm chart to deploy the postgresql for dev and test environment
+    digest: b3710641a82bc82e9c8d3e788b8cbb933e92c6baf6c72bd64cff817ada95e8c5
+    home: https://github.com/whoacademy/helm-charts/charts/postgresql
+    maintainers:
+    - name: springdo
+    - name: gkmahendran09
+    - name: rh-jpoole
+    name: postgresql
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-08-27T14:54:20.564668369Z"
