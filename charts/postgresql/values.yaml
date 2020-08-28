@@ -1,0 +1,18 @@
+persistent: false
+enabled: true
+service:
+  port: 5432
+  type: ClusterIP
+image:
+  tag: "9.6"
+
+storageClass:
+accessMode: ReadWriteOnce
+size: 5Gi
+
+username: "bastian"
+password: "balthazar"
+database: "neverendingblog"
+
+## Set annotations on pvc
+annotations: {}
