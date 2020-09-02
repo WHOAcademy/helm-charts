@@ -91,7 +91,6 @@ spec:
         kind: ImageStreamTag
         name: {{ .Values.image | quote }}
         namespace: openshift
-      lastTriggeredImage: ""
     type: ImageChange
   - type: ConfigChange
 {{- end }}
