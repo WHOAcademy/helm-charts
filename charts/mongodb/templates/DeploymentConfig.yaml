@@ -20,6 +20,18 @@ spec:
     spec:
       containers:
       - env:
+        {{- if .Values.sealed_secret }}
+        - name: MONGODB_USER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ .Values.sealed_secret.name}}
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ .Values.sealed_secret.name }}
+        {{- else }}
         - name: MONGODB_USER
           valueFrom:
             secretKeyRef:
@@ -30,6 +42,7 @@ spec:
             secretKeyRef:
               key: database-password
               name: {{ include "mongodb.fullname" . }}
+        {{- end }}
         - name: MONGODB_ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
