@@ -1,7 +1,9 @@
 {{- if .Values.enabled }}
 apiVersion: v1
-data:
-  {{ .Values.scripts }}
+data: 
+{{- with .Values.scripts }}
+{{ toYaml . | indent 2 }}
+{{- end }}
 kind: ConfigMap
 metadata:
   creationTimestamp: null

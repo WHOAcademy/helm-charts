@@ -6,8 +6,10 @@ metadata:
 spec:
   completionDeadlineSeconds: 600
   failedBuildsHistoryLimit: 3
-  source: {{ .Values.buildconfig.source }}
-  strategy: {{ .Values.buildconfig.strategy }}
+  source: 
+  {{- toYaml .Values.buildconfig.source | nindent 4 }}
+  strategy: 
+  {{- toYaml .Values.buildconfig.strategy | nindent 4 }}
   output:
     to:
       kind: "ImageStreamTag"

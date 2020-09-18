@@ -2,33 +2,34 @@
 enabled: true
 maxruntime: 300
 envVars:
-- name: POSTGRESQL_USER
-  value: "sso"
-- name: POSTGRESQL_DATABASE
-  value: "sso"
-- name: POSTGRESQL_SVC_HOSTNAME
-  value: "sso-postgresql"
-- name: PGPASSWORD
-  value: "123456"
-- name: BACKUP_NAME
-  value: "keycloak-db"
-- name: STORAGE_CONN_STR
-  valueFrom:
-    secretKeyRef:
-      name: azure-storage-account-conn-string 
-      key: connection_string
-- name: STORAGE_CONTAINER_NAME
-  valueFrom:
-    secretKeyRef:
-      name: azure-storage-container 
-      key: container_name
-- name: ENCRYPT_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: backup-encryption
-      key: password
+  - name: POSTGRESQL_USER
+    value: "sso"
+  - name: POSTGRESQL_DATABASE
+    value: "sso"
+  - name: POSTGRESQL_SVC_HOSTNAME
+    value: "sso-postgresql"
+  - name: PGPASSWORD
+    value: "123456"
+  - name: BACKUP_NAME
+    value: "keycloak-db"
+  - name: STORAGE_CONN_STR
+    valueFrom:
+      secretKeyRef:
+        name: azure-storage-account-conn-string 
+        key: connection_string
+  - name: STORAGE_CONTAINER_NAME
+    valueFrom:
+      secretKeyRef:
+        name: azure-storage-container 
+        key: container_name
+  - name: ENCRYPT_PASSWORD
+    valueFrom:
+      secretKeyRef:
+       name: backup-encryption
+       key: password
+
 resources:
-  requests:
+  request:
     cpu: 100m
     memory: 50Mi
   limits:
@@ -80,6 +81,7 @@ buildconfig:
     git:
       uri: "https://github.com/WHOAcademy/helm-charts.git"  
       ref: master
+    type: Git
   strategy:
     type: docker
     dockerStrategy: {}
