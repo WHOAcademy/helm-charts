@@ -76,7 +76,7 @@ scripts:
 
 buildconfig:
   source:
-    contextDir: "charts/backup-runner"
+    contextDir: "charts/backup-runner/container_build"
     git:
       uri: "https://github.com/WHOAcademy/helm-charts.git"  
       ref: master
