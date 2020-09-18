@@ -1,0 +1,48 @@
+{{- if .Values.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: {{ .Chart.Name }}
+  name: {{ template "backup-runner.name" . }}
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+     metadata:
+       creationTimestamp: null
+     spec:
+       backoffLimit: 0
+       template:
+         metadata:
+           creationTimestamp: null
+         spec:
+           activeDeadlineSeconds: {{ .Values.maxruntime }}
+           containers:
+           - env:
+           {{ .Values.envVars }}
+             command:
+             - /bin/bash
+             - /opt/backup/backup.sh
+             image: image-registry.openshift-image-registry.svc:5000/labs-staging/backup-runner 
+             imagePullPolicy: Always
+             name: {{ template "backup-runner.fullname" . }}
+             volumeMounts:
+             - name: backup-cm
+               mountPath: /opt/backup
+             resources:
+               request:
+                 cpu: {{ .Values.request.cpu }}
+                 memory: {{ .Values.request.memory }}
+               limits:
+                 cpu: {{ .Values.limits.cpu }}
+                 memory: {{ .Values.limits.memory }}
+           restartPolicy: Never
+           serviceAccount: backup
+           serviceAccountName: backup
+           volumes:
+           - name: backup-cm
+             configMap:
+               name: backup-scripts
+  schedule: {{ .Values.schedule }}
+{{- end }}

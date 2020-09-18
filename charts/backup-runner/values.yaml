@@ -1,0 +1,85 @@
+---
+enabled: false
+maxruntime: 300
+envVars:
+- name: POSTGRESQL_USER
+  value: "sso"
+- name: POSTGRESQL_DATABASE
+  value: "sso"
+- name: POSTGRESQL_SVC_HOSTNAME
+  value: "sso-postgresql"
+- name: PGPASSWORD
+  value: "123456"
+- name: BACKUP_NAME
+  value: "keycloak-db"
+- name: STORAGE_CONN_STR
+  valueFrom:
+    secretKeyRef:
+      name: azure-storage-account-conn-string 
+      key: connection_string
+- name: STORAGE_CONTAINER_NAME
+  valueFrom:
+    secretKeyRef:
+      name: azure-storage-container 
+      key: container_name
+- name: ENCRYPT_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: backup-encryption
+      key: password
+resources:
+  requests:
+    cpu: 100m
+    memory: 50Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+schedule: '0 3 * * *'
+
+scripts:
+  backup.sh: |
+    #!/bin/bash
+    set -e
+    DATESTAMP=$(date +%d-%m-%Y)
+
+    pg_dump -U $POSTGRESQL_USER -d $POSTGRESQL_DATABASE -h $POSTGRESQL_SVC_HOSTNAME > /tmp/${BACKUP_NAME}.sql
+
+    gzip -N -9 /tmp/${BACKUP_NAME}.sql
+
+    openssl enc -aes-256-cbc -in /tmp/${BACKUP_NAME}.sql.gz -out /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.aes256cbc -salt -pass pass:$ENCRYPT_PASSWORD
+
+    export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.aes256cbc"
+
+    python /opt/backup/upload-blob.py
+  create-container.py: |
+    import os
+
+    from azure.storage.blob import ContainerClient
+
+
+    container_client = ContainerClient.from_connection_string(conn_str=os.getenv('STORAGE_CONN_STR'),
+                                                              container_name=os.getenv('STORAGE_CONTAINER_NAME'))
+
+    container_client.create_container()
+  upload-blob.py: |
+    import os
+
+    from azure.storage.blob import BlobClient
+
+    source_file=os.getenv('SOURCE_FILE')
+    blob = BlobClient.from_connection_string(conn_str=os.getenv('STORAGE_CONN_STR'),
+                                             container_name=os.getenv('STORAGE_CONTAINER_NAME'),
+                                             blob_name=source_file)
+
+    with open(source_file, "rb") as data:
+        blob.upload_blob(data)
+
+buildconfig:
+  source:
+    contextDir: "charts/backup-runner"
+    git:
+      uri: "https://github.com/WHOAcademy/helm-charts.git"  
+      ref: master
+  strategy:
+    type: docker
+    dockerStrategy: {}

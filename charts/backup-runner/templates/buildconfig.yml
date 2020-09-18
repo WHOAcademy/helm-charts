@@ -1,0 +1,15 @@
+{{- if .Values.enabled }}
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: backup-container-builder
+spec:
+  completionDeadlineSeconds: 600
+  failedBuildsHistoryLimit: 3
+  source: {{ .Values.buildconfig.source }}
+  strategy: {{ .Values.buildconfig.strategy }}
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "backup-runner:latest"
+{{- end }}
