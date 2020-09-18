@@ -24,7 +24,7 @@ spec:
              command:
              - /bin/bash
              - /opt/backup/backup.sh
-             image: image-registry.openshift-image-registry.svc:5000/labs-staging/backup-runner 
+             image: {{ template "backup-runner.repo" . }}
              imagePullPolicy: Always
              name: {{ template "backup-runner.name" . }}
              volumeMounts:

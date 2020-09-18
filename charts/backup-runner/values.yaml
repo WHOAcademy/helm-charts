@@ -85,3 +85,4 @@ buildconfig:
   strategy:
     type: docker
     dockerStrategy: {}
+
