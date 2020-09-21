@@ -4,6 +4,11 @@ kind: ImageStream
 metadata:
   generation: 1
   name: backup-runner
+  labels:
+    app: {{ template "backup-runner.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   lookupPolicy:
     local: false

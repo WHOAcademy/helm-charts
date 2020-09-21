@@ -3,6 +3,11 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   name: backup-container-builder
+  labels:
+    app: {{ template "backup-runner.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   completionDeadlineSeconds: 600
   failedBuildsHistoryLimit: 3

@@ -3,7 +3,10 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   labels:
-    app: {{ .Chart.Name }}
+    app: {{ template "backup-runner.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
   name: {{ template "backup-runner.name" . }}
 spec:
   concurrencyPolicy: Forbid
