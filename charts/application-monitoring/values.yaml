@@ -1,0 +1,25 @@
+# Default values for application-monitoring.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Define Prometheus alerting rules you wish to create here.
+# Documentation: https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/
+PrometheusRules:
+  create: false
+#  name: example-alert
+#  rules:
+#  - name: example
+#    rules:
+#    - alert: VersionAlert
+#      expr: version{job="prometheus-example-app"} == 0
+
+ServiceMonitor:
+  create: false
+#  name: prometheus-example-monitor
+#  endpoints:
+#    - interval: 30s
+#      port: web
+#      scheme: http
+#  selector:
+#    matchLabels:
+#      app: prometheus-example-app

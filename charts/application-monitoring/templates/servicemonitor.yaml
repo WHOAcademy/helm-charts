@@ -1,0 +1,13 @@
+{{- if .Values.ServiceMonitor.create -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: {{ .Values.ServiceMonitor.name }}
+  name: {{ .Values.ServiceMonitor.name }}
+spec:
+  endpoints:
+  {{- toYaml .Values.ServiceMonitor.endpoints | nindent 4 }}
+  selector:
+  {{- toYaml .Values.ServiceMonitor.selector | nindent 4 }}
+{{- end -}}

@@ -1,0 +1,11 @@
+{{- if .Values.PrometheusRules.create -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    k8s-app: {{ .Values.PrometheusRules.name }}
+  name: {{ .Values.PrometheusRules.name }}
+spec:
+  groups:
+  {{- toYaml .Values.PrometheusRules.rules | nindent 4 }}
+{{- end -}}
