@@ -37,6 +37,23 @@ resources:
     memory: 512Mi
 schedule: '0 3 * * *'
 
+buildconfig:
+  source:
+    contextDir: "charts/backup-runner/container_build"
+    git:
+      uri: "https://github.com/WHOAcademy/helm-charts.git"  
+      ref: master
+    type: Git
+  strategy:
+    type: docker
+    dockerStrategy: {}
+
+# To enable sealed secrets follow the instructions in UJ / docs / sealed-secrets.md
+sealed_secret:
+  name: backup-encryption
+  encryptedData:
+    password: AgArim/f1O22yHAmJCap2KaHPMzjH3CxjcmeLZNeZ0yAn4vovCIBHjBqF9mMJz2zlpO60IODh7aQX4FD2vMDkFsFLxBdL0eWHfoDHZQuT1T8bYxyuocAkIX3G2KWaNfV7qpmG3tVELX3Fkqyemecof9jZ+rb2gDfMbNSTo4faaOR9E4KJPH9pBaOrc82n+rVWYCUBem1LghlpC9mAKuty72lc5gobWPrishlndZbAwc0pQ3ASM0WeHhxmBYC5330mGBvHU5Zv/cGRtP7LwVMIEkSkIDLvvUUG1iZf+qQEykGldPv4+Sx2PFuLPY0TUV8WB8nZC6+yFwCUHI8n1c4wUWTYgaG7H3ZoQifpknIQteMc64g1An/GdRmjEYHIrL3/fj/j2WTEn3E3erzzyUcvz9+/Iso/x5daIg0wq34p3yjbmcmnGgq6Qbk8Ly90Oe33GqON+xndZUpP+w3eOXeqtsRUwqlLOyjH8IzKy4beUGEhKWW5/EJDKM+fsbBh8FTYNmeauMsbK5DdhclQxLmp66nO5bgQirUOAw+noda0NPT6XzUlmnzw+LwUIQRherWyN1lY8WB1sS6jy3HYfuvIlwQQ31MHg/fJG0WmHlmp7VxJKpY4A5Gjt1Pfxt0FFctWeu5cF9/B6dUMO2n0U/j2skWcWVR1uz6JDDsr8npdlTOTwu0KBw3vnQxHnGSY+tFaU3NuxrjlYc3PrIvHxX7jnwSLIScMg==
+
 scripts:
   backup.sh: |
     #!/bin/bash
@@ -47,7 +64,7 @@ scripts:
 
     gzip -N -9 /tmp/${BACKUP_NAME}.sql
 
-    openssl enc -aes-256-cbc -in /tmp/${BACKUP_NAME}.sql.gz -out /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.aes256cbc -salt -pass pass:$ENCRYPT_PASSWORD
+    7za a /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z /tmp/${BACKUP_NAME}.sql.gz -p"${ENCRYPT_PASSWORD}" 
 
     export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.aes256cbc"
 
@@ -74,24 +91,3 @@ scripts:
 
     with open(source_file, "rb") as data:
         blob.upload_blob(data)
-
-buildconfig:
-  source:
-    contextDir: "charts/backup-runner/container_build"
-    git:
-      uri: "https://github.com/WHOAcademy/helm-charts.git"  
-      ref: master
-    type: Git
-  strategy:
-    type: docker
-    dockerStrategy: {}
-
-secrets:
-  encryption_password: Q2hhbmdlTTNOb3chCg==
-
-# To enable sealed secrets follow the instructions in UJ / docs / sealed-secrets.md
-# sealed_secrets:
-# - name: my-super-dooper-secret
-#   encrypteddata:
-#     username: AgCNfFd3Wpel09dbUHiWk+CxNjAcCaR43RH1teEUkLzkYSYXDYTyyZn+GGl4LFLV5kOH9M/kTazCRPzD/0CR8W715QB0FE7DXc+eA8/mIyY/KROsR9/fo6gED9ztmlyGM5grQcDcWfMeqDbYAVcHpUjZsu+p/R3LNDR27DrAHX/JU9Q5nYC2d2L8fD05KjrdE3BZ0WIUvL7nhPgU35qKBXA8VjJCX/Oqo3DB8LjkIqZVWwsQaQQ7JtvLLrqDqqrKENothTulM7hQXimFGRDVL+PTybkzWheNUJNfzYprZes2xnqz28G/MtN2dRJhC077AubT7CDGbXDLBIO+4Iamfo45zaWTigYQN64T4sGR33iOS18cwm5D7b84dXZ7rdXSSQSCpl9dvEWUQRv/2p+30W/+25ddankhl0Spkr+Mlbey1Fj0+K3AEqxT9FrKcYTLg3q4ou/Gq/+mL3FMkYFVUIZwmDd4952ADSlefNW+NLoszCcagIGppBO0kPTvRHLvZ8mDLZqdBtaWioU0wuQ6bluI9S75Qoaf8EppTVCNN/dXcY395YBg3xXSsb0p6HIJJDO99QHGVCVAau7s/y/7lzr+Bg86fw2is+MoiAI5X0HECd0PKdtPt0GvvajSOpd+kJOqNwLcTsGTeij6RbpBMFwyrvgdA/QW85nVqMOzhER/jF4xXwsIo/ayWps03LAdrMVD+kzDOA==
-#     password: AgCzZHRscoiW0YdFsPR03/CMFMspDsfFsfCqq0zxr0D1+tWoiDcr8JaHx3566vek73f4YbFcRGA7Ssd+BjbGavdCT7KwLUtGnYY7ZecAAuSQQ/8ljC2HdK7XG4lkDZ5B2oPdiOaegaTMrWupcELzfquKjVMiNazW/ltxNirPs+pvcr6zvG8XmQek9MWowG8aehxVD+I/MF4oiz1XkjHi0ulR00883rmn9vyq1E2Th1eDeUIsEf4solxN863je7qRCKEIM6btxBLWcphcHsvMTGdj/ex4ALUX/qW1uYcabWvsJUiQTcak+Jm1eRKrrvjgNdC+mXMd+3mC3OyhI41/qxou3oXgrImvU/7G5jWkt/vfIY3TCgwtL374pvipwH7971fSUQFqzqIAicg+diWqPgrgg9SlDl3hc3J93NxZ3gtm+MLIRcQaBD860j+6gRjs39Zb0BsWsWBWl9PjIlewoe0tj5Q/gl26tF/4p989wsRXb7bI8E1/iWA3QdEUvBLmgUK4oIix4iGkjTXms5Avl8oFvBVjrZkKfF1fSHXySgEVg/j/YHOlZso9lbZArhg+AoNik83NNEiWKGRnfTkHUZ7U9kBZWYd/HWBytktzxIYTR8PNwf3JlVmBiwazLDpQHfqtIDNuwMtTx3TFHRKpyZF+H+K9vHdJoC6Bxc4+2Zu8YbxfjBjUt9ioz/qJjR5EzXGvRHdvoa1jmOfqy4X1SrWWgYYJN9dXC2k6mnaw4sWB60hv/jH6C+Y=
