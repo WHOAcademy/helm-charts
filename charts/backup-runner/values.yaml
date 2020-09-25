@@ -15,12 +15,12 @@ envVars:
   - name: STORAGE_CONN_STR
     valueFrom:
       secretKeyRef:
-        name: azure-storage-account-conn-string 
+        name: backup-encryption
         key: connection_string
   - name: STORAGE_CONTAINER_NAME
     valueFrom:
       secretKeyRef:
-        name: azure-storage-container 
+        name: backup-encryption
         key: container_name
   - name: ENCRYPT_PASSWORD
     valueFrom:
@@ -53,7 +53,8 @@ sealed_secret:
   name: backup-encryption
   encryptedData:
     password: AgArim/f1O22yHAmJCap2KaHPMzjH3CxjcmeLZNeZ0yAn4vovCIBHjBqF9mMJz2zlpO60IODh7aQX4FD2vMDkFsFLxBdL0eWHfoDHZQuT1T8bYxyuocAkIX3G2KWaNfV7qpmG3tVELX3Fkqyemecof9jZ+rb2gDfMbNSTo4faaOR9E4KJPH9pBaOrc82n+rVWYCUBem1LghlpC9mAKuty72lc5gobWPrishlndZbAwc0pQ3ASM0WeHhxmBYC5330mGBvHU5Zv/cGRtP7LwVMIEkSkIDLvvUUG1iZf+qQEykGldPv4+Sx2PFuLPY0TUV8WB8nZC6+yFwCUHI8n1c4wUWTYgaG7H3ZoQifpknIQteMc64g1An/GdRmjEYHIrL3/fj/j2WTEn3E3erzzyUcvz9+/Iso/x5daIg0wq34p3yjbmcmnGgq6Qbk8Ly90Oe33GqON+xndZUpP+w3eOXeqtsRUwqlLOyjH8IzKy4beUGEhKWW5/EJDKM+fsbBh8FTYNmeauMsbK5DdhclQxLmp66nO5bgQirUOAw+noda0NPT6XzUlmnzw+LwUIQRherWyN1lY8WB1sS6jy3HYfuvIlwQQ31MHg/fJG0WmHlmp7VxJKpY4A5Gjt1Pfxt0FFctWeu5cF9/B6dUMO2n0U/j2skWcWVR1uz6JDDsr8npdlTOTwu0KBw3vnQxHnGSY+tFaU3NuxrjlYc3PrIvHxX7jnwSLIScMg==
-
+    connection_string: AgBYjaPa2YUwJc0PRM0zIzDatOE4DTHEQLhSLtVl0AsRE7A8Pillf4p+Gmulpa6KtsSjLD+8JSSplA47XquexVQPh2Tuc/sqGsVJO5mxuXdRtxR8am9xZELtgOSxFIIU4+iq8Kpp+rdFEqutW84zfvzo1q4n/FSguM4jKSL+UYlqSQSwdgRaeHLQg3J1lnpyg0B99XaFDwt1YqBmp4t4j43gODGaAopIVWzTkF1wqkLjZO0DRR27174Y/2p7+ysSWYdinGfx+wVCJumcGuMdvHOI60DICmbJsduOA0lsrYPddDdfziE4uuCwTyEXfjYI0EF+llAjWVsG0QE+258JpBYgLSmDgiHR1Z34A265eXT5+eBXLkkkUZzgtm+KaDQ2hB7RNDk0LDh0XqHJUErcVO8wv8MU5x7f6QBmaYZxNCM6/54rrcMtIchtX5ejQbLZ8lhzFxRmPpnMqDIaf7UFDZVmqRKJSfQ6naOQEc+HwVIQ0yC8CSbmJF6XjCxCArV9jIjokKXiK0xL1x3esX+8HZpt/Fi6+6q+XLBy6BfQE5fxmSA/VP+pR4H7m5uaXIRvktJmgB7YS2LguW+Xv6pP1iC82RV/sxlJrGaUygYm0CEXfTxi34yLdgn9sFfH6BujDaNKU4onplz9YwXMu5AAO4nzTDuKnG/o2gYbMstLi4xg+W7+92uSqAa6Upt5EN6jBMoDMGUtHQlN+yeGpOgb1D/x3h8dMVc1wcp+cDEXjhkCJriJsD38bOE/OoXftLoQYw8H4+O+F59cUNJYCymKQbmxbN+aUgsNRdVdYVgmz5z5CARUO8hA02eBlSqD513M6knXQw25tlIZfRU8xl33hcdezwqOFrQPR68OZMqz6y3qhAlLOEkg7rId2Izr6jlCO8jVFV5OSiJqj2beK8jbCYpWM4McJde7Fqw2oRizRzhPRlknPGzfhX8n5TQ=
+    container_name: AgCEP3QM4yvPlfN1Zb1iWDBifz/5hm8vEkHU/vKXDiFf9DJxlAN9v/NS/3fbX1lIXb/vMhr8rdzYfDMiaege5g2N9ao9LPYGLo26+w4uw13uxHCqufG5UXK6uB64Jgx9gSNI+y9NZ0PX6vKv/uqW1AwP1K3j5R4g7tHPYHgM0LfAq7PqIqf5S/MjDn7KMBXBiq7iiHykWpPY2hAv/R1O9250u/U+1AUdz/bjXxS8RWdHjXMJ1596ZjXdFJFiDwt40LPpk7CHlHNY3Qn/EI6DqMnwfisGq4LXwfSmweysWvizuHcoDR64eWn177T3/2q3+HHTZfIxl11EUHxn3YCOQ+0WYaNbBKUQdSaqud0tg+awMymp9YKqeCjfIjMlPI3eAsOTU4R4M21I0qTrqN1p5EuKxmzJ6XSFnzEuYuXENXcU98QXlwNMSOVGHPxJ1dpUCwke80G7OXCttCm0ZL6Qns9b/e3ey5anLm6/+LK/2Ojt69hO/hi46XMg4oyWvKp1216Ypi9ptGPiv5z758wCJB++OMR5i4VDAO0I0K7pwM1VnsEm7AuAVUx6U2SgpFW5rAk8ni0DnDnbqrWeTlDGoCN9qyy9pJFkpi3DLG2WSn67maK/5ZDc+bRYJCZm16GNG6+XTYNjiwe3ol4qNF2/XU1AjXGwoo5exxbVWzVXfozOWanfs88YuYIWqdW4Z77FfJSVOpcOLM+cmcXPRD2hUCx5v0XU
 scripts:
   backup.sh: |
     #!/bin/bash
