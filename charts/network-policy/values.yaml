@@ -1,0 +1,28 @@
+# Network policies to define in Openshift. Please use descriptive names.
+# See https://docs.openshift.com/container-platform/4.5/networking/network_policy/about-network-policy.html for more details.
+
+policies:
+  - name: deny-by-default
+    spec:
+      podSelector: {}
+      ingress: []
+  - name: allow-routers
+    spec:
+      ingress:
+        - from:
+          - namespaceSelector:
+              matchLabels:
+                network.openshift.io/policy-group: ingress
+      podSelector: {}
+      policyTypes:
+      - Ingress
+  - name: allow-from-user-prometheus
+    spec:
+      ingress:
+        - from:
+          - namespaceSelector:
+              matchLabels:
+                name: openshift-user-workload-monitoring
+      podSelector: {}
+      policyTypes:
+      - Ingress
