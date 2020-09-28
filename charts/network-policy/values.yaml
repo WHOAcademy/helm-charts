@@ -1,6 +1,7 @@
 # Network policies to define in Openshift. Please use descriptive names.
 # See https://docs.openshift.com/container-platform/4.5/networking/network_policy/about-network-policy.html for more details.
 
+enabled: true
 policies:
   - name: deny-by-default
     spec:

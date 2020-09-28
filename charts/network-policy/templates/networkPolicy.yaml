@@ -1,3 +1,4 @@
+{{- if .Values.enabled }}
 {{- range .Values.policies }}
 ---
 kind: NetworkPolicy
@@ -6,4 +7,5 @@ metadata:
   name: {{ .name }}
 spec: 
 {{ toYaml .spec | indent 2 }}
+{{ end }}
 {{ end }}
