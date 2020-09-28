@@ -67,7 +67,7 @@ scripts:
 
     7za a /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z /tmp/${BACKUP_NAME}.sql.gz -p"${ENCRYPT_PASSWORD}" 
 
-    export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.aes256cbc"
+    export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z"
 
     python /opt/backup/upload-blob.py
   create-container.py: |
