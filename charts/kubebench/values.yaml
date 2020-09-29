@@ -1,0 +1,34 @@
+# Default values for kubebench.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "kubebench"
+
+schedule: '0 2 * * *'
+
+nodes:
+  - who-tfgvj-infra-northeurope1-8hxsf
+  - who-tfgvj-infra-northeurope2-44dm2
+  - who-tfgvj-infra-northeurope3-w7z7f
+  - who-tfgvj-master-0
+  - who-tfgvj-master-1
+  - who-tfgvj-master-2
+  - who-tfgvj-worker-northeurope1-4nh5z
+  - who-tfgvj-worker-northeurope1-zdfk6
+  - who-tfgvj-worker-northeurope1-zlxvd
+  - who-tfgvj-worker-northeurope2-fcg5l
+  - who-tfgvj-worker-northeurope2-kc2vl
+  - who-tfgvj-worker-northeurope2-nkrfm
+  - who-tfgvj-worker-northeurope3-47pzb
+  - who-tfgvj-worker-northeurope3-4tcgp
+  - who-tfgvj-worker-northeurope3-8vz2t
