@@ -3,7 +3,7 @@ apiVersion: v2
 name: backup-runner
 description: A Helm chart to deploy a cronjob container to run backups or perhaps other adhoc tasks.
 type: application
-version: 0.0.6
+version: 0.0.7
 appVersion: 0.10
 home: https://github.com/whoacademy/helm-charts/charts/backup-runner
 maintainers:

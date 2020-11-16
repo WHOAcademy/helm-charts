@@ -70,7 +70,7 @@ scripts:
 
     export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z"
 
-    python /opt/backup/upload-blob.py
+    python3 /opt/backup/upload-blob.py
   create-container.py: |
     import os
 
