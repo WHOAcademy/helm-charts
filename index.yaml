@@ -3,6 +3,20 @@ entries:
   backup-runner:
   - apiVersion: v2
     appVersion: "0.1"
+    created: "2020-11-16T13:44:02.778490082Z"
+    description: A Helm chart to deploy a cronjob container to run backups or perhaps
+      other adhoc tasks.
+    digest: 6d7a3393768f4017ce126dad339ff216d5a02193b40a1ad49b600e1a295bde45
+    home: https://github.com/whoacademy/helm-charts/charts/backup-runner
+    maintainers:
+    - name: rh-jpoole
+    name: backup-runner
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/backup-runner-0.0.6/backup-runner-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: "0.1"
     created: "2020-11-16T13:21:02.974536553Z"
     description: A Helm chart to deploy a cronjob container to run backups or perhaps
       other adhoc tasks.
