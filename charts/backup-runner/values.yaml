@@ -25,8 +25,8 @@ envVars:
   - name: ENCRYPT_PASSWORD
     valueFrom:
       secretKeyRef:
-       name: backup-encryption
-       key: password
+        name: backup-encryption
+        key: password
 
 resources:
   request:
@@ -41,7 +41,7 @@ buildconfig:
   source:
     contextDir: "charts/backup-runner/container_build"
     git:
-      uri: "https://github.com/WHOAcademy/helm-charts.git"  
+      uri: "https://github.com/WHOAcademy/helm-charts.git"
       ref: master
     type: Git
   strategy:
@@ -66,7 +66,7 @@ scripts:
 
     gzip -N -9 /tmp/${BACKUP_NAME}.sql
 
-    7za a /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z /tmp/${BACKUP_NAME}.sql.gz -p"${ENCRYPT_PASSWORD}" 
+    7za a /tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z /tmp/${BACKUP_NAME}.sql.gz -p"${ENCRYPT_PASSWORD}"
 
     export SOURCE_FILE="/tmp/${BACKUP_NAME}_${DATESTAMP}.sql.gz.7z"
 
