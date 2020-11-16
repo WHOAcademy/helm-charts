@@ -3,6 +3,20 @@ entries:
   backup-runner:
   - apiVersion: v2
     appVersion: "0.1"
+    created: "2020-11-16T10:19:51.783990086Z"
+    description: A Helm chart to deploy a cronjob container to run backups or perhaps
+      other adhoc tasks.
+    digest: b348bbd34ba164b0c8bc013a838f3679c69d22a682b01939797289104ee8f312
+    home: https://github.com/whoacademy/helm-charts/charts/backup-runner
+    maintainers:
+    - name: rh-jpoole
+    name: backup-runner
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/backup-runner-0.0.3/backup-runner-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: "0.1"
     created: "2020-09-18T14:17:49.725131246Z"
     description: A Helm chart to deploy a cronjob container to run backups or perhaps
       other adhoc tasks.
@@ -29,6 +43,17 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/backup-runner-0.0.1/backup-runner-0.0.1.tgz
     version: 0.0.1
+  kubebench:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-16T10:19:51.869196999Z"
+    description: A Helm chart for Kubernetes
+    digest: d4e2d594bf2fee9c1ca6d2cbfc210fa8eb613bc4e22c19c80c0b542bcb6f1e2c
+    name: kubebench
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/kubebench-0.1.0/kubebench-0.1.0.tgz
+    version: 0.1.0
   mongodb:
   - apiVersion: v2
     appVersion: "3.6"
@@ -90,6 +115,17 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/mongodb-1.0.0/mongodb-1.0.0.tgz
     version: 1.0.0
+  network-policy:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-16T10:19:51.959787832Z"
+    description: A Helm chart for Kubernetes
+    digest: d80686107b2db08b846de17d85b94dee31e4d247becf7c7d9fea5de21489adda
+    name: network-policy
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/network-policy-0.1.0/network-policy-0.1.0.tgz
+    version: 0.1.0
   postgresql:
   - apiVersion: v2
     appVersion: "9.6"
