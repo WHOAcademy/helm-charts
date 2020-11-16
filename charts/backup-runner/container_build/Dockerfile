@@ -3,7 +3,7 @@ USER root
 COPY files/ /
 RUN \
   mkdir -p /opt/backup && \
-  yum install rh-python36 python-pip python-wheel -y && \
+  yum install python-pip python-wheel python3 -y && \
   yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/F-32-x86_64/pgdg-fedora-repo-latest.noarch.rpm && \
   yum install postgresql10.x86_64 p7zip -y && \
   yum update -y && \
