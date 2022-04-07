@@ -1,0 +1,16 @@
+{{- if .Values.managed_redis.disabled }}
+{{- if eq .Values.redis.enabled true -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "redis.labels" . | nindent 4 }}
+  name: {{ template "redis.fullname" . }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.redis.volume_capacity }}
+{{- end }}
+{{- end }}
