@@ -1,11 +1,21 @@
-persistent: false
-enabled: true
-memory_limit: 512Mi
-is_namespace: openshift
-redis_password: 'pAssw0rd).' # todo: use selaed secrets
-redis_version: "5"
-volume_capacity: 1Gi
-service:
-  port: 6379
-db_name: 1
-expiry: 3600
+redis:
+  enabled: true
+  memory_limit: 512Mi
+  is_namespace: openshift
+  redis_password: 'pAssw0rd).' # todo: use selaed secrets
+  redis_version: "5"
+  volume_capacity: 1Gi
+  service:
+    port: 6379
+  db_name: 1
+  expiry: 3600
+
+managed_redis:
+  # disabled: true - to use in-cluster database
+  # disabled: false - use managed RDBMS database
+  disabled: true
+  # values will be overridden by the config repo based on the namespace
+  # different values for database will be available in values-*.yaml file from the config repo
+  auth:
+    host: localhost
+    password: password
