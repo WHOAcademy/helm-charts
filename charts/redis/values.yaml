@@ -1,0 +1,11 @@
+persistent: false
+enabled: true
+memory_limit: 512Mi
+is_namespace: openshift
+redis_password: 'pAssw0rd).' # todo: use selaed secrets
+redis_version: "5"
+volume_capacity: 1Gi
+service:
+  port: 6379
+db_name: 1
+expiry: 3600
