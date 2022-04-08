@@ -1,4 +1,3 @@
-{{- if .Values.managed_redis.disabled }}
 {{- if eq .Values.redis.enabled true -}}
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
@@ -74,5 +73,4 @@ spec:
       lastTriggeredImage: ""
     type: ImageChange
   - type: ConfigChange
-{{- end }}
 {{- end }}
