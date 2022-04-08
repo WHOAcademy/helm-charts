@@ -212,4 +212,18 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
+  redis:
+  - apiVersion: v2
+    appVersion: 5.0.5
+    created: "2022-04-08T08:19:00.236486863Z"
+    description: A Helm chart to deploy the redis for dev and test environment
+    digest: dbef4a6c6ba79dcdfe4d1c21d55b852f1bcf395915561e698df263af73bff4dd
+    home: https://github.com/whoacademy/helm-charts/charts/redis
+    maintainers:
+    - name: ambaliyav
+    name: redis
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/redis-1.0.0/redis-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-08-27T14:54:20.564668369Z"
