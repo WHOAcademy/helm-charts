@@ -3,12 +3,10 @@ name: redis
 description: A Helm chart to deploy the redis for dev and test environment
 type: application
 # HelmChart Version
-version: 1.0.1
+version: 1.0.0
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: 5.0.5
 home: https://github.com/whoacademy/helm-charts/charts/redis
 maintainers:
-  - name: springdo
-  - name: gkmahendran09
-  - name: rh-jpoole
+  - name: ambaliyav
