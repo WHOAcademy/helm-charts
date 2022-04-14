@@ -1,4 +1,4 @@
-{{- if eq .Values.redis.enabled true -}}
+{{- if eq .Values.enabled true -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -10,5 +10,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.redis.volume_capacity }}
+      storage: {{ .Values.volume_capacity }}
 {{- end }}
