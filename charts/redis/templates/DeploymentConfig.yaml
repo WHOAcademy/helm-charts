@@ -20,11 +20,19 @@ spec:
     spec:
       containers:
       - env:
+      {{- if .Values.sealed_secrets.enabled }}
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: redis_password
+              name: "{{ .Values.application_name }}-incluster-secret"
+      {{- else }}
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
               key: database-password
               name: {{ template "redis.name" . }}
+      {{- end }}
         image: ' '
         imagePullPolicy: IfNotPresent
         livenessProbe:
