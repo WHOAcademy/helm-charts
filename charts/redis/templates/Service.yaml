@@ -1,4 +1,4 @@
-{{- if eq .Values.redis.enabled true -}}
+{{- if eq .Values.enabled true -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,9 +11,9 @@ spec:
   ports:
   - name: redis
     nodePort: 0
-    port: {{ .Values.redis.service.port | default "6379" }}
+    port: {{ .Values.service.port | default "6379" }}
     protocol: TCP
-    targetPort: {{ .Values.redis.service.port | default "6379" }}
+    targetPort: {{ .Values.service.port | default "6379" }}
   selector:
     {{- include "redis.selectorLabels" . | nindent 4 }}
   sessionAffinity: None

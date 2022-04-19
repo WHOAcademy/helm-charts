@@ -1,4 +1,4 @@
-{{- if eq .Values.redis.enabled true -}}
+{{- if eq .Values.enabled true -}}
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
@@ -20,21 +20,29 @@ spec:
     spec:
       containers:
       - env:
+      {{- if .Values.sealed_secrets.enabled }}
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: redis_password
+              name: "{{ .Values.application_name }}-incluster-secret"
+      {{- else }}
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
               key: database-password
               name: {{ template "redis.name" . }}
+      {{- end }}
         image: ' '
         imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 30
           tcpSocket:
-            port: {{ .Values.redis.service.port | default "6379" }}
+            port: {{ .Values.service.port | default "6379" }}
           timeoutSeconds: 1
         name: redis
         ports:
-        - containerPort: {{ .Values.redis.service.port | default "6379" }}
+        - containerPort: {{ .Values.service.port | default "6379" }}
           protocol: TCP
         readinessProbe:
           exec:
@@ -47,7 +55,7 @@ spec:
           timeoutSeconds: 1
         resources:
           limits:
-            memory: {{ .Values.redis.memory_limit }}
+            memory: {{ .Values.memory_limit }}
         securityContext:
           capabilities: {}
           privileged: false
@@ -68,8 +76,8 @@ spec:
       - redis
       from:
         kind: ImageStreamTag
-        name: redis:{{ .Values.redis.redis_version }}
-        namespace: {{ .Values.redis.is_namespace }}
+        name: redis:{{ .Values.redis_version }}
+        namespace: {{ .Values.is_namespace }}
       lastTriggeredImage: ""
     type: ImageChange
   - type: ConfigChange
