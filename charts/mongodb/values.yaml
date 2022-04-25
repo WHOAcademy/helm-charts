@@ -9,4 +9,4 @@ image: mongodb:3.6
 storage: 1Gi
 sealed_secrets:
   enabled: false
-  name: 
+  name:
