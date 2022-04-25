@@ -1,10 +1,11 @@
 persistent: false
 enabled: true
+# The DB credentials are left empty for security purposes. While helm installing manually please fill these values and run the install command
 database:
-  name: profiles
-  adminPassword: pAssw0rd
-  user: lxp
-  password: pAssw0rd
+  name: 
+  adminPassword: 
+  user: 
+  password: 
 image: mongodb:3.6
 storage: 1Gi
 sealed_secrets:
