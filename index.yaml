@@ -127,6 +127,21 @@ entries:
   mongodb:
   - apiVersion: v2
     appVersion: "3.6"
+    created: "2022-04-26T04:03:53.135539856Z"
+    description: A Helm chart to deploy the mongodb for dev and test environment
+    digest: e39ed4bf33336e6a9f9b92410ed5f8bc46d5818673b1f27885c1a84cb5988b3b
+    home: https://github.com/whoacademy/helm-charts/charts/mongodb
+    maintainers:
+    - name: springdo
+    - name: gkmahendran09
+    - name: rh-jpoole
+    name: mongodb
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/mongodb-1.0.5/mongodb-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
+    appVersion: "3.6"
     created: "2022-04-25T15:23:10.634871009Z"
     description: A Helm chart to deploy the mongodb for dev and test environment
     digest: 2ecc61f11d6f600691c6c03d4da88fa868562117456bb59b4b390674bf75a190
