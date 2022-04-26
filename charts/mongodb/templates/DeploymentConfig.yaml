@@ -24,22 +24,22 @@ spec:
         - name: MONGODB_USER
           valueFrom:
             secretKeyRef:
-              key: username
+              key: mongodb_user
               name: {{ .Values.sealed_secrets.name }}
         - name: MONGODB_PASSWORD
           valueFrom:
             secretKeyRef:
-              key: password
+              key: mongodb_password
               name: {{ .Values.sealed_secrets.name }}
         - name: MONGODB_ADMIN_PASSWORD
           valueFrom:
             secretKeyRef:
-              key: database-admin-password
+              key: mongodb_admin_password
               name: {{ .Values.sealed_secrets.name }}
         - name: MONGODB_DATABASE
           valueFrom:
             secretKeyRef:
-              key: database-name
+              key: mongodb_database
               name: {{ .Values.sealed_secrets.name }}
       {{- else }}
         - name: MONGODB_USER
