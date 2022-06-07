@@ -25,7 +25,7 @@ spec:
           valueFrom:
             secretKeyRef:
               key: redis_password
-              name: "{{ .Values.sealed_secrets.sealed_secret_name }}-incluster-secret"
+              name: "{{ .Values.sealed_secrets.sealed_secret_name }}"
       {{- else }}
         - name: REDIS_PASSWORD
           valueFrom:
