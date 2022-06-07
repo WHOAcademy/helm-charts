@@ -260,6 +260,19 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 5.0.5
+    created: "2022-06-07T14:05:32.672118675Z"
+    description: A Helm chart to deploy the redis for dev and test environment
+    digest: d2b00b1b6ab56429642845913dce08846c9c31717f96f75cf0007eea47a24c9b
+    home: https://github.com/whoacademy/helm-charts/charts/redis
+    maintainers:
+    - name: ambaliyav
+    name: redis
+    type: application
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/redis-1.0.4/redis-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 5.0.5
     created: "2022-04-19T13:24:26.139357613Z"
     description: A Helm chart to deploy the redis for dev and test environment
     digest: d5654a6e202882191cf99e7f85d38c1e582af51ac0746718f4f390ae880f70c2
