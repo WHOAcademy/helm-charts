@@ -23,7 +23,7 @@ maintainers:
   url: https://github.com/bitnami/charts
 - email: cedric@desaintmartin.fr
   name: desaintmartin
-name: redis
+name: bitnami-redis
 sources:
 - https://github.com/bitnami/bitnami-docker-redis
 # version: 16.11.3
