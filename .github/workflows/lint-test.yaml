@@ -11,6 +11,9 @@ jobs:
 
       - name: Fetch history
         run: git fetch --prune --unshallow
+      
+      - name: Add dependency chart repos
+        run: helm repo add stable https://charts.bitnami.com/bitnami
 
       - name: Run chart-testing (lint)
         id: lint
