@@ -113,6 +113,37 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/backup-runner-0.0.1/backup-runner-0.0.1.tgz
     version: 0.0.1
+  bitnami-memcached:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 1.6.15
+    created: "2022-06-09T11:55:43.641124009Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Memcached is an high-performance, distributed memory object caching
+      system, generic in nature, but intended for use in speeding up dynamic web applications
+      by alleviating database load.
+    digest: b345f2babe16106a61e9d69c7dea53ff3ea4d9ebba76b676ac1f69118d711ee5
+    home: https://github.com/whoacademy/helm-charts/charts/bitnami-memcached
+    icon: https://bitnami.com/assets/stacks/memcached/img/memcached-stack-220x234.png
+    keywords:
+    - memcached
+    - cache
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: bitnami-memcached
+    sources:
+    - https://github.com/bitnami/bitnami-docker-memcached
+    - http://memcached.org/
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/bitnami-memcached-1.0.1/bitnami-memcached-1.0.1.tgz
+    version: 1.0.1
   bitnami-redis:
   - annotations:
       category: Database
