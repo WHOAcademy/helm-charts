@@ -210,7 +210,7 @@ resources:
 ## @param podSecurityContext.fsGroup Set Memcached pod's Security Context fsGroup
 ##
 podSecurityContext:
-  enabled: true
+  enabled: false
   fsGroup: 1001
 ## Configure Container Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
@@ -219,7 +219,7 @@ podSecurityContext:
 ## @param containerSecurityContext.runAsNonRoot Set Memcached containers' Security Context runAsNonRoot
 ##
 containerSecurityContext:
-  enabled: true
+  enabled: false
   runAsUser: 1001
   runAsNonRoot: true
 ## @param hostAliases Add deployment host aliases
