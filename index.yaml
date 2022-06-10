@@ -144,6 +144,40 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/bitnami-memcached-1.0.1/bitnami-memcached-1.0.1.tgz
     version: 1.0.1
+  bitnami-mysql:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 8.0.29
+    created: "2022-06-10T08:46:21.408797935Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 65695ccb41c0a2d5b1870d8c5eb679b61295503e8c61164cf584a9bcb496b8ef
+    home: https://github.com/whoacademy/helm-charts/tree/master/charts/bitnami-mysql
+    icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    - cluster
+    - high availability
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: bitnami-mysql
+    sources:
+    - https://github.com/bitnami/bitnami-docker-mysql
+    - https://mysql.com
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/bitnami-mysql-1.0.1/bitnami-mysql-1.0.1.tgz
+    version: 1.0.1
   bitnami-redis:
   - annotations:
       category: Database
