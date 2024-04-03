@@ -31,7 +31,7 @@ keywords:
   - rasa-oss
 dependencies:
   - name: rasa-common
-    repository: https://charts.bitnami.com/bitnami
+    repository: https://whoacademy.github.io/helm-charts
     tags:
       - rasa-common
     version: ~1.0.2
