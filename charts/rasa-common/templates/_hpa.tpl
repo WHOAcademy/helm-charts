@@ -3,7 +3,7 @@ Return a Horizontal Pod Autoscaler resource
 */}}
 {{- define "rasa-common.hpa.spec" -}}
 {{- if .Values.autoscaling.enabled }}
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "rasa-common.names.fullname" . }}
