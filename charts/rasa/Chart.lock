@@ -1,6 +1,6 @@
 dependencies:
 - name: rasa-common
-  repository: https://helm.rasa.com
+  repository: https://whoacademy.github.io/helm-charts
   version: 1.0.2
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
