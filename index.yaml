@@ -356,6 +356,38 @@ entries:
     urls:
     - https://github.com/WHOAcademy/helm-charts/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
     version: 1.0.0
+  rasa-common:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Issue with default value not being accessed
+          links:
+            - name: Github Issue
+              url: https://github.com/RasaHQ/helm-charts/issues/40
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 1.0.2
+    created: "2024-04-03T15:54:06.842903615Z"
+    description: A Library Helm Chart for grouping common logic between rasa charts.
+    digest: 91940db413f7ef5aad15b5dd4be533da69147f4300fe51041acaa417db879e14
+    home: https://github.com/RasaHQ/charts/tree/master/charts/rasa-common
+    icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZPsa-h0ilYPCFaQmf21MFMyVH7oyvrfnJHwvGOJVlMIeTiakBJTSwGd2cDFcF5AsEiY&usqp=CAU
+    keywords:
+    - common
+    - template
+    - function
+    - rasa
+    maintainers:
+    - email: hi@rasa.com
+      name: Rasa
+    name: rasa-common
+    sources:
+    - https://github.com/RasaHQ/helm-charts/charts/rasa-common
+    - https://rasa.com/
+    type: library
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/rasa-common-1.0.2/rasa-common-1.0.2.tgz
+    version: 1.0.2
   redis:
   - apiVersion: v2
     appVersion: 5.0.5
