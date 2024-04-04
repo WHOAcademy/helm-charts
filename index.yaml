@@ -366,6 +366,37 @@ entries:
               url: https://github.com/RasaHQ/helm-charts/issues/40
       category: Infrastructure
     apiVersion: v2
+    appVersion: 1.0.3
+    created: "2024-04-04T13:32:41.884886532Z"
+    description: A Library Helm Chart for grouping common logic between rasa charts.
+    digest: 4f7aefe41d83c7ea4a34cc02cbf1fa6a75889637d971c7b4b8245d43b6bd7a1b
+    home: https://github.com/RasaHQ/charts/tree/master/charts/rasa-common
+    icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqZPsa-h0ilYPCFaQmf21MFMyVH7oyvrfnJHwvGOJVlMIeTiakBJTSwGd2cDFcF5AsEiY&usqp=CAU
+    keywords:
+    - common
+    - template
+    - function
+    - rasa
+    maintainers:
+    - email: hi@rasa.com
+      name: Rasa
+    name: rasa-common
+    sources:
+    - https://github.com/RasaHQ/helm-charts/charts/rasa-common
+    - https://rasa.com/
+    type: library
+    urls:
+    - https://github.com/WHOAcademy/helm-charts/releases/download/rasa-common-1.0.3/rasa-common-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: Issue with default value not being accessed
+          links:
+            - name: Github Issue
+              url: https://github.com/RasaHQ/helm-charts/issues/40
+      category: Infrastructure
+    apiVersion: v2
     appVersion: 1.0.2
     created: "2024-04-03T15:54:06.842903615Z"
     description: A Library Helm Chart for grouping common logic between rasa charts.
