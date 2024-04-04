@@ -37,15 +37,15 @@ dependencies:
     version: "1.0.2"
   - name: postgresql
     version: "10.5.3"
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: oci://europe-west3-docker.pkg.dev/rasa-releases/rasa-x-helm
     condition: postgresql.install
   - name: redis
     version: "14.6.6"
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: oci://europe-west3-docker.pkg.dev/rasa-releases/rasa-x-helm
     condition: redis.install
   - name: rabbitmq
     version: "8.16.4"
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: oci://europe-west3-docker.pkg.dev/rasa-releases/rasa-x-helm
     condition: rabbitmq.install
   - name: rasa-action-server
     version: "1.0.2"
