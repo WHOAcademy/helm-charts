@@ -27,4 +27,4 @@ name: bitnami-redis
 sources:
 - https://github.com/bitnami/bitnami-docker-redis
 # version: 16.11.3
-version: 1.0.1
+version: 1.0.2
